@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"> -->
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Document</title>
+</head>
+<body class="bg_img">
+    <!-- Book meeting -->
+    <div id="book_meeting_div" class="book_meeting flex center">
+        <form id="book_meeting_form" class="center" action="/book_meeting" method="post">
+            <label id="nd_txt" for=""> * Nödvändiga fält  </label><br>
+
+            <h4 style="text-align:center; color: black; margin: -20px 0 0 0">Få all information till din mail</h1>
+            <label class="form_labels" for=""> Kontakt uppgifter </label><br>
+            <input id="" type="text" name="contact_name" placeholder="Namn *" required>
+            
+            <input id="" type="text" name="email" placeholder="Email*" required><br>
+            
+            <label class="form_labels" for=""> Företag </label><br>
+            <input id="" type="text" name="company" placeholder="Företag">
+            <input id="" type="text" name="website" placeholder="Hemsida"><br>
+            
+            <label class="form_labels" for="">Vill du boka ett samtal med en av våra representanter?</label><br>
+            <label class="form_labels" for="yes">Ja</label>
+            <input id="book_meeting_checkbox_yes" style="top:2px; position: relative;" type="radio" onClick=booking_form() name="meeting_radio_btn">
+            <label class="form_labels" for="no">Nej</label>
+            <input id="book_meeting_checkbox_no" style="top:2px; position: relative;" type="radio" onClick=send_email() name="meeting_radio_btn"><br>
+            
+            <div id="questions" class="hide">
+                <hr>
+                <label class="form_labels" for="">Telefonnummer</label><br>
+                <input id="" type="text" name="phone_no" placeholder="Telefon"><br>
+
+                <label class="form_labels" for="">Datum - tid</label><br>
+                <input id="date_input" type="date" name="date_input" value="" min="" max="" >
+                <select name="" id="">
+                    <option value="09:00-09:30">09:00-09:30</option>
+                    <option value="09:30-10:00">09:30-10:00</option>
+                    
+                    <option value="10:00-10:30">10:00-10:30</option>
+                    <option value="10:30-11:00">10:30-11:00</option>
+                    
+                    <option value="11:00-11:30">11:00-11:30</option>
+                    <option value="11:30-12:00">11:30-12:00</option>
+                    
+                    <option value="12:00-12:30">12:00-12:30</option>
+                    <option value="12:30-13:00">12:30-13:00</option>
+                    
+                    <option value="13:00-13:30">13:00-13:30</option>
+                    <option value="13:30-14:00">13:30-14:00</option>
+                    
+                    <option value="14:00-14:30">14:00-14:30</option>
+                    <option value="14:30-15:00">14:30-15:00</option>
+                </select><br>
+                
+                <label class="form_labels" for=""> Frågor </label><br>
+                <textarea id="questions_field" name="questions_field" placeholder="Dina Frågor.." id="" cols="30" rows="10"></textarea><br>
+                <!-- <input id="time_input" type="time" min="09:00" max="15:00" value="09:00"> -->
+                <hr>
+                <input style="margin: 5px 0 0 0" type="submit" value="Skicka">
+            </div>
+            <div id="send_email_btn" class="hide">
+                <hr>
+                <input style="margin: 5px 0 0 0" type="submit" value="Skicka">
+            </div>
+        </form>
+        
+        
+    </div>
+</body>
+<script>
+    const book_meeting_checkbox = document.getElementById('book_meeting_checkbox_yes');
+    const questions = document.getElementById('questions');
+    const send_email_btn = document.getElementById("send_email_btn");
+
+    function booking_form() {
+        date_input()
+        if( send_email_btn.classList.contains("hide")) {
+            questions.classList.toggle("hide");
+        }
+        else {
+            send_email_btn.classList.add("hide")
+            questions.classList.toggle("hide");
+        }
+    }
+
+    function send_email() {
+        if( questions.classList.contains("hide")) {
+            send_email_btn.classList.toggle("hide");
+        }
+        else {
+            questions.classList.add("hide")
+            send_email_btn.classList.toggle("hide");
+        }
+    }
+    
+    function date_input() {
+        const date = new Date().toISOString().slice(0, 10);
+        var date_display = document.getElementById("date_input");
+        var min_date = parseInt(date.slice(8, 10)) + 1
+        
+        date_display.value = date.slice(0,8) + min_date;
+        date_display.min = date.slice(0,8) + min_date;
+        console.log(date_display.value);
+        console.log(date_display.min);
+        
+        var max_date = parseInt(date.slice(8, 10)) + 14
+        date_display.max = date.slice(0,8) + max_date;
+        console.log(date_display.max);
+    }
+
+    // function google_booking {
+    // }
+
+
+</script>
+<!-- <script src="../static/booking_form.js"></script> -->
+</html>

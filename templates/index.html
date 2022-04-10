@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"> -->
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Document</title>
+</head>
+<body class="bg_img">
+    <!-- Chatbot  -->
+    <div id="cta_div" class="chatbot">
+        <h1>EN LöSNING FöR HELA FASTIGHETS INDUSTRIN</h1>
+        <button id="cta_btn" onClick="start_funnel()">Hur mycket vill du spara?</button>
+    </div>
+
+    <!-- Chatbot  -->
+    <div id="chatbot_div" class="chatbot hide">
+        <!-- Text window -->
+        <div id="estimater_window1" class="center">
+            <div id="estimater_window2" class="center">
+                <div id="estimat_window" class=" estimater_display center">
+                    <p>För att kunna ge ett <br> energibesparings estimat <br> behöver vi först lokalens <br> Längd Bredd och Höjd</p>
+                    <label class="estimater_labels" for="height">Längd</label><br>
+                    <input id="height" type="range" name="range_height" min='0' max='400' step="5" value="0" oninput="height_value(this.value);">
+                    <input style="margin-top:5px" id="textInput_height" placeholder="0m" type="text" value=""><br>
+                    
+                    <label class="estimater_labels" for="width">Bredd</label><br>
+                    <input id="width" type="range" name="range_width" min='0' max='400' step="5" value="0" oninput="width_value(this.value);">
+                    <input style="margin-top:5px" id="textInput_width" placeholder="0m" type="text" value=""><br>
+                    
+                    <label class="estimater_labels" for="depths">Höjd</label><br>
+                    <input id="depth" type="range" name="range_depths" min='0' max='400' step="5" value="0" oninput="depth_value(this.value);">
+                    <input style="margin:5px 0 15px 0" id="textInput_depth" placeholder="0m" type="text" value=""><br>
+                    
+                    <!-- <label class="estimater_labels" for="estimat">Beräknad besparing</label><br>
+                    <input style="margin-top:5px" id="estimator_output" placeholder="0kr" type="text" value=""><br> -->
+
+                </div>
+            </div>
+            <button id="estimater_btn" style="margin-top:5px" class="btn_style" onClick="start_faq()"> Estimate</button>
+        </div>
+        
+        <!-- Estimater window -->
+        <div id="chat_window1" class="center hide">
+            <div id="chat_window2" class="">
+                <div id="text_window" class="chat_display center"></div>
+                <!-- Chat text input and send button -->
+                <input id="chat_bot_input" placeholder="Skriv...." type="text">
+                <input id="chat_submit_btn" type="submit" value="" onClick="chat()">
+            </div>
+            <button id="booking_btn" style="margin-top:5px" class="btn_style" onClick="book_meeting()"> Boka Möte</button>
+        </div>
+    </div>
+
+    <!-- Book meeting -->
+    <!-- Book meeting -->
+    <div id="book_meeting_div" class="book_meeting center hide">
+        <form id="book_meeting_form" class="center">
+            <label id="nd_txt" for=""> * Nödvändiga fält  </label><br>
+
+            <h4 style="text-align:center; color: black; margin: -20px 0 0 0">Få all information till din mail</h1>
+            <label class="form_labels" for=""> Kontakt uppgifter </label><br>
+            <input id="contact_name" type="text" name="contact_name" placeholder="Namn *" required>
+            
+            <input id="email" type="text" name="email" value="" placeholder="Email*" required><br>
+            
+            <label class="form_labels" for=""> Företag </label><br>
+            <input id="company" type="text" name="company" placeholder="Företag">
+            <input id="website" type="text" name="website" placeholder="Hemsida"><br>
+            
+            <label class="form_labels" for="">Vill du boka ett samtal med en av våra representanter?</label><br>
+            <label class="form_labels" for="yes">Ja</label>
+            <input id="book_meeting_checkbox_yes" style="top:2px; position: relative;" type="radio" onClick="booking_form()" name="meeting_radio_btn">
+            <label class="form_labels" for="no">Nej</label>
+            <input id="book_meeting_checkbox_no" style="top:2px; position: relative;" type="radio" onClick="send_email()" name="meeting_radio_btn"><br>
+            
+            <div id="questions" class="hide">
+                <hr>
+                <label class="form_labels" for="">Telefonnummer</label><br>
+                <input id="phone_no" type="text" name="phone_no" placeholder="Telefon"><br>
+
+                <label class="form_labels" for="">Datum - tid</label><br>
+                <input id="date_input" type="date" name="date_input" value="today" value="" min="" max="" >
+                <select name="" id="">
+                    <option value="09:00-09:30">09:00-09:30</option>
+                    <option value="09:30-10:00">09:30-10:00</option>
+                    
+                    <option value="10:00-10:30">10:00-10:30</option>
+                    <option value="10:30-11:00">10:30-11:00</option>
+                    
+                    <option value="11:00-11:30">11:00-11:30</option>
+                    <option value="11:30-12:00">11:30-12:00</option>
+                    
+                    <option value="12:00-12:30">12:00-12:30</option>
+                    <option value="12:30-13:00">12:30-13:00</option>
+                    
+                    <option value="13:00-13:30">13:00-13:30</option>
+                    <option value="13:30-14:00">13:30-14:00</option>
+                    
+                    <option value="14:00-14:30">14:00-14:30</option>
+                    <option value="14:30-15:00">14:30-15:00</option>
+                </select><br>
+                
+                <label class="form_labels" for=""> Frågor </label><br>
+                <textarea id="questions_field" name="questions_field" placeholder="Dina Frågor.." id="" cols="30" rows="10"></textarea><br>
+                <!-- <input id="time_input" type="time" min="09:00" max="15:00" value="09:00"> -->
+                <hr>
+                <input style="margin: 5px 0 0 0" type="submit" value="Skicka" onClick="send_form()">
+            </div>
+            <div id="send_email_btn" class="hide">
+                <hr>
+                <input style="margin: 5px 0 0 0" type="submit" value="Skicka" onClick="send_form()">
+            </div>
+        </form>
+        
+    </div>
+
+    <div id="end" class="end hide">
+        <div id="chat_log">
+
+        </div>
+        <div id="contact_log">
+
+        </div>
+        <div id="estimate_log">
+
+        </div>
+    </div>
+
+
+</body>
+<script>
+    const css = document.querySelectorAll('style,link[rel="stylesheet"]')
+    const cta_div = document.getElementById("cta_div")
+    const estimater_window = document.getElementById("estimater_window")
+    const chat_window1 = document.getElementById("chat_window1")
+    const estimater_window1 = document.getElementById("estimater_window1")
+    const chatbot_div = document.getElementById("chatbot_div")
+    const book_meeting_div = document.getElementById("book_meeting_div")
+    const book_meeting_btn = document.getElementsByClassName("book_meeting_btn")
+    const estimater_btn = document.getElementById("estimater_btn")
+    const booking_btn = document.getElementById("booking_btn")
+
+
+
+    function updateTextInput(val) {
+            document.getElementById('textInput_width').value=val; 
+        }
+
+    
+    function start_faq() {
+        estimater_window1.classList.add("hide")
+        chat_window1.classList.toggle("hide");
+        estimate()
+        
+    }
+    
+    function start_funnel() {
+        chatbot_div.classList.toggle("hide")
+        cta_div.classList.add("hide")
+    }
+    
+    function book_meeting() {
+        chat_window1.classList.add("hide");
+        book_meeting_div.classList.toggle("hide")
+        
+    }
+
+
+</script>
+<script src="../static/booking_form.js"></script>
+<script src="../static/faq_chat.js"></script>
+</html>
