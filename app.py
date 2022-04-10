@@ -41,4 +41,6 @@ def booking():
     print(request_test)
     return jsonify(request_test)
 
+if __name__ == '__main__':
 
+    app.run(debug=True)
