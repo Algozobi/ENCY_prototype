@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 
 # from chat import get_response
 from estimate_algo import estimate
-from Bert import answer_question
 
 app = Flask(__name__)
 
