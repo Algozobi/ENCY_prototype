@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 
-# from chat import get_response
+from chat import get_response
 from estimate_algo import estimate
-from Bert import answer_question
 
 app = Flask(__name__)
 
@@ -16,7 +15,7 @@ def index():
 def chat():
     text = request.get_json().get('message')
     print(text)
-    response = answer_question(text)
+    response = get_response(text)
     print(response)
     bot_response = {'bot': response}
     print(bot_response)
@@ -41,4 +40,6 @@ def booking():
     print(request_test)
     return jsonify(request_test)
 
+if __name__ == '__main__':
 
+    app.run(debug=True)
