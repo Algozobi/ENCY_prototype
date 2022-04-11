@@ -3,8 +3,8 @@ from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 
 # name = "twmkn9/albert-base-v2-squad2"
 # name = "distilbert-base-uncased-distilled-squad"
-name = "mrm8488/bert-small-finetuned-squadv2"
-#name = "bert-large-uncased-whole-word-masking-finetuned-squad"
+#name = "mrm8488/bert-small-finetuned-squadv2"
+name = "bert-large-uncased-whole-word-masking-finetuned-squad"
 
 tokenizer = AutoTokenizer.from_pretrained(name,)
 
